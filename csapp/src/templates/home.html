@@ -1,0 +1,39 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block content %}
+    {% for blog in blogs %}
+        <div class="row ">
+            <div class="col-sm">
+                {% comment %} {% thumbnail firma.firma_logo "130x110" format="PNG" as im %} {% endcomment %}
+                    <img class"thumb_image" src="{{blog.thumbnail.url}}" style="width:100%; max-width:500px; height:200px">
+                {% comment %} {% endthumbnail %} {% endcomment %}
+            
+                <div>
+                    <h3>{{blog.title}}</h3>
+                    <h5>When does your business need a landing page?</h5>
+                        {% comment %} {{blog.content| safe}} {% endcomment %}
+                    <a href="{% url 'blog_detail' id=blog.id %}" class="btn btn-primary detail_btn">Read Blog</a>
+                <div class="author">
+                        {% comment %} <img class="avatar" src="https://assets.codepen.io/6256091/internal/avatars/users/default.png?fit=crop&format=auto&height=80&version=1622358772&width=80"> {% endcomment %}
+                <div class="author-text">
+                    <p style="font-weight: 800;  font-style: revert;">Author: {{blog.author.username}}</p>
+                    {% comment %} <p>Jun 3 - 12 min read</p> {% endcomment %}
+                    </div>
+                    </div>
+          </div>
+        </div>
+
+        <style>
+            .detail_btn {
+                        color: #fff;
+                        background-color: #1c848e;
+                        border-color: #007bff;
+                        border-radius: initial;
+                        } 
+            .thumb_image{
+                            
+                        }
+        </style>
+    {% endfor %}
+{% endblock %}
